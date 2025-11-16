@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
           {/*  Left Column  */}
           <motion.div
             variants={fadeIn("left", 0.2)}
-            initial="hidden"s
+            initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
             className="flex flex-col gap-10"

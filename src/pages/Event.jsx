@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ButtonPrimary from "../components/ButtonPrimary";
 import {
   CheckCircle,
   CalendarHeart,
@@ -48,9 +49,10 @@ const ResortEvents = () => {
             From dreamy weddings to thrilling pool parties — we bring your
             celebrations to life with elegance and precision.
           </p>
-          <button className="px-10 py-3 bg-amber-500 hover:bg-amber-400 text-gray-900 font-semibold rounded-full transition-all shadow-md">
+          {/* <button className="px-10 py-3 bg-amber-500 hover:bg-amber-400 text-gray-900 font-semibold rounded-full transition-all shadow-md">
             Plan Your Event
-          </button>
+          </button> */}
+          <ButtonPrimary label="PLAN YOUR EVENT" href="/RoyalHomes" />
         </motion.div>
       </section>
 
@@ -234,9 +236,7 @@ const ResortEvents = () => {
             Our event team will turn your dream celebration into an unforgettable
             experience — crafted with passion and precision.
           </p>
-          <button className="bg-amber-500 text-gray-900 px-10 py-3 rounded-full font-semibold hover:bg-amber-400 transition">
-            Book Your Event Now
-          </button>
+          <ButtonPrimary label="BOOK YOUR EVENT NOW" href="/RoyalHomes" />
         </motion.div>
       </section>
     </div>

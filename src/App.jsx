@@ -9,6 +9,7 @@ import RoyalHomes from "./pages/RoyalHomes";
 import Service from "./pages/Service";
 import Events from "./pages/Event";
 import Contact from "./pages/Contact";
+import Gallery from "./pages/Gallery";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,7 +37,7 @@ function App() {
           <Route path="/Services" element={<Service />} />
           <Route path="/Events" element={<Events />} />
           <Route path="/Contact" element={<Contact />} />
-          {/* <Route path="/Gallery" element={<GalleryP />} /> */}
+          <Route path="/Gallery" element={<Gallery />} />
  
         </Routes>
       )}
