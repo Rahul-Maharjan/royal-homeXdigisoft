@@ -84,7 +84,7 @@ const Gallery = () => {
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.03 }}
-                className="overflow-hidden rounded-lg shadow-md cursor-pointer bg-gray-50"
+                className="overflow-hidden shadow-md cursor-pointer bg-gray-50"
                 onClick={() => setSelected(src)}
               >
                 <img

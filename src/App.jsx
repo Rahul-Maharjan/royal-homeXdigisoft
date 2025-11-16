@@ -38,7 +38,6 @@ function App() {
           <Route path="/Events" element={<Events />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Gallery" element={<Gallery />} />
- 
         </Routes>
       )}
 
