@@ -27,13 +27,25 @@ const RoyalHomes = () => {
             ROYALS HOME
           </h1>
           <p className="text-lg mt-3">
-            ~ RHR is committed to creating a welcoming and memorable experience for every guest. 
+            ~ RHR is committed to creating a welcoming and memorable experience
+            for every guest.
           </p>
         </div>
+        <svg
+          class="absolute -bottom-1 left-0 w-full"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,40 C200,120 400,0 720,40 C1040,80 1240,20 1440,60 L1440,100 L0,100 Z"
+            fill="#F6F6F6"
+          ></path>
+        </svg>
       </section>
       <div className="absolute z-10 text-left left-16 -mt-64">
-                    <img src={slogo} alt="abcd" />
-                  </div>
+        <img src={slogo} alt="abcd" />
+      </div>
 
       {/* Page Sections */}
       <AboutUs />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiPhone, FiMenu, FiX } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; 
 import Logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -22,9 +22,9 @@ const Navbar = () => {
       name: "ACCOMMODATION",
       href: "#",
       dropdown: [
-        { name: "Deluxe Room", href: "/#/RoomDetails" },
-        { name: "Super Deluxe", href: "/rooms/super-deluxe" },
-        { name: "Twin Room", href: "/rooms/twin" },
+        { name: "Master Bed", href: "/#/RoomDetails?room=MASTER_BED" },
+        { name: "Deluxe Bed", href: "/#/RoomDetails?room=DELUXE_BED" },
+        { name: "Twin Room", href: "/#/RoomDetails?room=TWIN_BED" },
       ],
     },
     { name: "ROYALS HOME", href: "/#/RoyalHomes" },

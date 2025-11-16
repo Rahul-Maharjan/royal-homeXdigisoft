@@ -22,52 +22,106 @@ import icon15 from "../assets/rooms/icon-15.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import hero from "../assets/hero.webp";
+import duplex from "../assets/duplex.webp";
 import slogo from "../assets/slogo.png";
 
-const room = {
-  title: "Deluxe Room",
-  reviews: 56,
-  rating: 4.8,
-  location: "Tanahun",
-  icons: [
-    { icon: icon12, label: "2 Guests" },
-    { icon: icon13, label: "1 Children" },
-    { icon: icon14, label: "40 m²" },
-    { icon: icon15, label: "2 Beds" },
-  ],
-  heroImage: hero,
-  description: `The European boutique design of our Deluxe Rooms with Tanahun view includes either two single beds or a Queen Size double bed. There is accommodation for one additional bed in the spacious living room with couch. Enjoy the breathtaking views of the Tanahun, fresh mountain air, and the gentle afternoon light while lounging on the south-facing balcony.
+const ROOMS = {
+  MASTER_BED: {
+    title: "Master Bed",
+    reviews: 112,
+    rating: 4.9,
+    location: "Tanahun",
+    icons: [
+      { icon: icon12, label: "3 Guests" },
+      { icon: icon13, label: "1 Children" },
+      { icon: icon14, label: "55 m²" },
+      { icon: icon15, label: "1 King Bed" },
+    ],
+    heroImage: hero,
+    description: `Our luxurious Master Bed rooms offer a spacious retreat with an elegant interior, premium king-sized bed, and a beautiful Tanahun valley view. Perfect for families or couples seeking comfort and privacy.`,
+    rules: [
+      "Check-in time: From 3:00 PM",
+      "Check-out time: By 11:00 AM",
+      "Early check-in/late check-out subject to availability.",
+      "All rooms are non-smoking.",
+      "Daily housekeeping included.",
+    ],
+    amenities: [
+      "Free Wi-Fi",
+      "Smart TV",
+      "Swimming Pool",
+      "Fitness Center",
+      "King Size Bed",
+      "Shower + Bathtub",
+      "Airport Transport",
+    ],
+    gallery: [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7],
+  },
 
-Enjoy the splendor of Amsterdam's vistas from this opulent accommodation. Each room is elegantly decorated with a remarkably comfortable bed and a modern environment. It also offers access to Nagomi Health and The Lounge, where you can relax and enjoy refreshments and drinks anytime.`,
-  rules: [
-    "Check-in time: From 3:00 PM",
-    "Check-out time: By 11:00 AM",
-    "Early check-in / late check-out: Subject to availability and may incur additional charges.",
-    "Maximum occupancy: Please adhere to the specified room capacity.",
-    "All rooms are non-smoking.",
-    "Daily housekeeping service is provided unless otherwise requested.",
-    "Requests for extra bedding, baby cots, or amenities should be made in advance.",
-  ],
-  amenities: [
-    "Free Wi-Fi",
-    "Smart TV",
-    "Swimming Pool",
-    "Fitness Center",
-    "King Size Bed",
-    "24/7 Support",
-    "Shower",
-    "Refrigerator",
-    "Airport Transport",
-  ],
-  gallery: [
-    gallery1,
-    gallery2,
-    gallery3,
-    gallery4,
-    gallery5,
-    gallery6,
-    gallery7,
-  ],
+  DELUXE_BED: {
+    title: "Deluxe Bed",
+    reviews: 56,
+    rating: 4.8,
+    location: "Tanahun",
+    icons: [
+      { icon: icon12, label: "2 Guests" },
+      { icon: icon13, label: "1 Children" },
+      { icon: icon14, label: "40 m²" },
+      { icon: icon15, label: "2 Beds" },
+    ],
+    heroImage: duplex,
+    description: `Deluxe Bed rooms feature premium bedding, a relaxing Tanahun hillside view, and elegant interiors. Perfect for guests who want comfort with modern amenities.`,
+    rules: [
+      "Check-in: From 3:00 PM",
+      "Check-out: By 11:00 AM",
+      "Non-smoking room.",
+      "Daily housekeeping provided.",
+      "Extra requests available on booking.",
+    ],
+    amenities: [
+      "Free Wi-Fi",
+      "Smart TV",
+      "Swimming Pool",
+      "Fitness Center",
+      "Queen Size Bed",
+      "Shower",
+      "Refrigerator",
+      "Airport Transport",
+    ],
+    gallery: [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7],
+  },
+
+  TWIN_BED: {
+    title: "Twin Bed",
+    reviews: 38,
+    rating: 4.6,
+    location: "Tanahun",
+    icons: [
+      { icon: icon12, label: "2 Guests" },
+      { icon: icon13, label: "0 Children" },
+      { icon: icon14, label: "35 m²" },
+      { icon: icon15, label: "2 Single Beds" },
+    ],
+    heroImage: hero,
+    description: `Twin Bed rooms are ideal for friends, colleagues, or solo travelers. Featuring two comfortable single beds and a peaceful view, it’s a perfect blend of comfort and convenience.`,
+    rules: [
+      "Check-in: From 3:00 PM",
+      "Check-out: 11:00 AM",
+      "Non-smoking room.",
+      "Daily housekeeping included.",
+      "Extra amenities on request.",
+    ],
+    amenities: [
+      "Free Wi-Fi",
+      "Smart TV",
+      "Working Desk",
+      "24/7 Support",
+      "Shower",
+      "Refrigerator",
+      "Laundry Service",
+    ],
+    gallery: [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7],
+  },
 };
 
 export default function RoomDetails() {
@@ -80,8 +134,62 @@ export default function RoomDetails() {
     extras: { clean: false, parking: false, breakfast: false, dinner: false },
   });
 
+  // selected room: default to MASTER_BED for immediate display
+  const [selectedRoomKey, setSelectedRoomKey] = useState("MASTER_BED");
+  const room = ROOMS[selectedRoomKey];
+
+  // On mount: read `room` from URL (supports both normal query and hash-based routing)
+  useEffect(() => {
+    const parseRoomFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      let key = params.get("room");
+
+      if (!key) {
+        const hash = window.location.hash || "";
+        const qIndex = hash.indexOf("?");
+        if (qIndex !== -1) {
+          const hashQuery = hash.substring(qIndex + 1);
+          const hp = new URLSearchParams(hashQuery);
+          key = hp.get("room");
+        }
+      }
+
+      if (key && ROOMS[key]) {
+        setSelectedRoomKey(key);
+      }
+    };
+
+    // parse once on mount
+    parseRoomFromUrl();
+
+    // listen for navigation changes (navbar anchor clicks will trigger these)
+    window.addEventListener("hashchange", parseRoomFromUrl);
+    window.addEventListener("popstate", parseRoomFromUrl);
+
+    return () => {
+      window.removeEventListener("hashchange", parseRoomFromUrl);
+      window.removeEventListener("popstate", parseRoomFromUrl);
+    };
+  }, []);
+
+  // Keep URL in sync when user switches room (no reload)
+  useEffect(() => {
+    const key = selectedRoomKey;
+    const hash = window.location.hash || "";
+    if (hash && hash.startsWith("#/")) {
+      // Keep path to RoomDetails; replace or append query
+      const base = hash.split("?")[0] || "#/RoomDetails";
+      const newHash = `${base.split("#/")[1] ? `#/${base.split("#/")[1].split('?')[0]}` : '#/RoomDetails'}?room=${key}`;
+      window.history.replaceState(null, "", newHash);
+    } else {
+      const url = new URL(window.location.href);
+      url.searchParams.set("room", key);
+      window.history.replaceState(null, "", url.toString());
+    }
+  }, [selectedRoomKey]);
+
   const handleChange = (e) => {
-    const { name, value, checked, type } = e.target;
+    const { name, value, checked } = e.target;
     if (name.startsWith("extra_")) {
       const key = name.replace("extra_", "");
       setForm((prev) => ({
@@ -127,12 +235,11 @@ export default function RoomDetails() {
       }
     );
 
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
-    }
+    const el = galleryRef.current;
+    if (el) observer.observe(el);
 
     return () => {
-      if (galleryRef.current) observer.unobserve(galleryRef.current);
+      if (el) observer.unobserve(el);
     };
   }, []);
 
@@ -219,6 +326,23 @@ export default function RoomDetails() {
 
         {/* Main content container (slightly pulled up to overlap hero curve) */}
         <main className="max-w-7xl mx-auto px-6 md:px-8 -mt-6 md:-mt-10  relative z-10">
+          {/* Room selector (switch between room types without loading) */}
+          {/* <div className="mb-6 flex flex-wrap items-center gap-3">
+            {Object.keys(ROOMS).map((key) => (
+              <button
+                key={key}
+                onClick={() => setSelectedRoomKey(key)}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors duration-150 ${
+                  selectedRoomKey === key
+                    ? 'bg-[#1B4332] text-white'
+                    : 'bg-white border border-gray-100'
+                }`}
+              >
+                {ROOMS[key].title}
+              </button>
+            ))}
+          </div> */}
+
           <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 rounded-sm p-6 md:p-10">
             {/* LEFT: content (no border, glassy look, layered) */}
             <motion.div
