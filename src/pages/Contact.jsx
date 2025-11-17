@@ -3,35 +3,73 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import hero from "../assets/hero.webp";
+import slogo from "../assets/slogo.png";
 
 const Contact = () => {
   return (
     <>
-    <Navbar/>
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-amber-100 text-gray-800">
-      {/* Header Section */}
-      <section className="text-center py-16 bg-[#ddbd71]/90 text-black shadow-md">
-        <motion.h1
-          initial={{ y: -40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-extrabold tracking-wide mt-20"
-        >
-          Contact Our Resort
-        </motion.h1>
-        <p className="mt-3 text-lg opacity-90">
-          We’re here to help you plan your perfect stay in paradise.
-        </p>
-      </section>
+    <Navbar />
 
-      {/* Main Contact Info Section */}
-      <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
+    {/* Hero Section (match Service style) */}
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative overflow-hidden"
+    >
+      <div
+        className="relative h-[360px] md:h-[460px] flex items-center justify-center"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(11,45,30,0.58), rgba(255,255,255,0.04)), url(${hero})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0" style={{ mixBlendMode: "overlay" }} />
+
+        <div className="relative z-10 text-center px-6">
+          <h1
+            className="text-3xl md:text-5xl font-serif font-semibold tracking-tight text-white"
+            style={{
+              textShadow: "0 6px 20px rgba(11,45,30,0.35)",
+            }}
+          >
+            Contact Our Resort
+          </h1>
+          <p className="mt-3 text-sm md:text-lg text-[#f4e8cf]/95">
+            We’re here to help you plan your perfect stay in paradise.
+          </p>
+        </div>
+
+        <svg
+          className="absolute -bottom-1 left-0 w-full"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path
+            d="M0,40 C200,120 400,0 720,40 C1040,80 1240,20 1440,60 L1440,100 L0,100 Z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      </div>
+    </motion.section>
+    <div className="absolute z-10 text-left left-16 -mt-72">
+      <img src={slogo} alt="slogo" />
+    </div>
+
+    <div className="min-h-screen bg-[#F9F7F3] text-gray-800">
+
+      {/* Main Contact Info Section (match Service layout/container) */}
+      <section className="bg-white py-20">
+        <div className="max-w-[1300px] mx-auto px-8 grid md:grid-cols-2 gap-10">
         {/* Contact Details */}
         <motion.div
           initial={{ x: -60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white shadow-lg rounded-2xl p-8 border border-[#ceb885] hover:shadow-xl transition-all"
+          className="bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-xl transition-all"
         >
           <h2 className="text-3xl font-bold mb-6 text-[#c9b27c]">
             Get in Touch
@@ -79,7 +117,7 @@ const Contact = () => {
           initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white shadow-lg rounded-2xl p-8 border border-amber-100"
+          className="bg-white rounded-2xl p-8 border border-[#e5e5e5]"
         >
           <h2 className="text-3xl font-bold mb-6 text-[#c4a763]">
             Send Us a Message
@@ -117,6 +155,7 @@ const Contact = () => {
             </button>
           </form>
         </motion.div>
+        </div>
       </section>
 
       {/* Map Section */}

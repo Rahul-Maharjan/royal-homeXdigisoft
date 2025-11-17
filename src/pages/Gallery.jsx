@@ -39,7 +39,7 @@ const Gallery = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative overflow-hidden"
+        className="relative"
       >
         <div
           className="relative h-[420px] md:h-[520px] flex items-center justify-center"
@@ -67,11 +67,6 @@ const Gallery = () => {
 
             <div
               className="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-full"
-              style={{
-                background: "rgba(255,255,255,0.06)",
-                backdropFilter: "blur(6px)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
             >
               <ButtonPrimary label="VIEW HOTEL DETAILS" href="/RoyalHomes" />
             </div>
@@ -82,7 +77,7 @@ const Gallery = () => {
             className="absolute -bottom-1 left-0 w-full"
             viewBox="0 0 1440 100"
             preserveAspectRatio="none"
-            aria-hidden
+            aria-hidden="true"
           >
             <path
               d="M0,40 C200,120 400,0 720,40 C1040,80 1240,20 1440,60 L1440,100 L0,100 Z"
@@ -91,12 +86,12 @@ const Gallery = () => {
           </svg>
         </div>
 
-        <div className="absolute z-10 text-left left-16 -mt-72">
+        <div className="absolute z-20 text-left left-16 -mt-72 hidden md:block">
           <img src={slogo} alt="brand" />
         </div>
       </motion.section>
 
-      <main className="bg-white">
+      <main>
         <div className="max-w-[1300px] mx-auto px-6 py-16">
           <div className="mb-8 text-center">
             <p className="text-sm text-[#b2925a] uppercase tracking-wider font-semibold">

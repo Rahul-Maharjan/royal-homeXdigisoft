@@ -42,7 +42,7 @@ const ResortEvents = () => {
           transition={{ duration: 1 }}
           className="relative z-10 text-white px-6"
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-lg">
+          <h1 className="text-4xl md:text-6xl font-serif font-semibold tracking-tight text-white">
             Celebrate Life’s Best Moments
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 mb-10">
@@ -84,11 +84,11 @@ const ResortEvents = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 font-serif">
+            <h2 className="text-[28px] sm:text-[36px] md:text-[48px] tracking-wider leading-snug md:leading-relaxed font-serif text-[#111111] mb-4 md:mb-6">
               An Experience Beyond Celebration
             </h2>
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              Every event at our resort is more than a gathering — it’s an
+            <p className="text-gray-700 mb-6 leading-relaxed">       
+              Every event at our resort is more than a gathering — it’s an 
               emotion crafted with detail. From stunning decorations to curated
               music, we design moments that speak luxury, love, and laughter.
             </p>
@@ -122,7 +122,7 @@ const ResortEvents = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-16"
+            className="text-[28px] sm:text-[36px] md:text-[48px] tracking-wider leading-snug md:leading-relaxed font-serif text-[#111111] mb-4 md:mb-6"
           >
             Events We Organize
           </motion.h2>
