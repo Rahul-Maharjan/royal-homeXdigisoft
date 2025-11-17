@@ -5,6 +5,7 @@ import ButtonPrimary from "../components/ButtonPrimary";
 import { motion } from "framer-motion";
 
 import heroImg from "../assets/hero.webp";
+import slogo from "../assets/slogo.png";
 
 // Room images
 import r1 from "../assets/rooms/1.jpg";
@@ -25,47 +26,78 @@ import h3 from "../assets/hall/3.jpg";
 const Gallery = () => {
   const [selected, setSelected] = useState(null);
 
-  const images = [r1, r2, r3, r4, r5, r6, p1, p2, p3, h1, h2, h3];
+  const rooms = [r1, r2, r3, r4, r5, r6];
+  const pools = [p1, p2, p3];
+  const halls = [h1, h2, h3];
 
   return (
     <>
       <Navbar />
 
-      {/* Hero - inspired by Home's visual style */}
-      <section
-        className="relative h-[60vh] w-full flex items-center justify-center overflow-hidden"
-        style={{
-          backgroundImage: `url(${heroImg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+      {/* Hero section styled like Services / RoyalHomes */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-black/30" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1 }}
-          className="relative z-10 text-center px-6"
+        <div
+          className="relative h-[420px] md:h-[520px] flex items-center justify-center"
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(11,45,30,0.58), rgba(255,255,255,0.04)), url(${heroImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <div className="backdrop-blur-md bg-white/10 border border-white/20 px-6 py-8 inline-block">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white font-light">
+          <div className="absolute inset-0" style={{ mixBlendMode: "overlay" }} />
+
+          <div className="relative z-10 text-center px-6">
+            <h1
+              className="text-4xl md:text-6xl font-serif font-semibold tracking-tight text-white"
+              style={{
+                textShadow:
+                  "0 6px 20px rgba(11,45,30,0.35), 0 1px 0 rgba(255,255,255,0.02)",
+              }}
+            >
               Gallery
-            </h2>
-            <p className="text-white/90 mt-4 max-w-[760px]">
-              Explore our curated collection of rooms, pool area, and event
-              spaces — styled and photographed to inspire your stay.
+            </h1>
+            <p className="mt-3 text-sm md:text-lg text-[#f4e8cf]/95">
+              Design inspiration — curated rooms, pool and event spaces.
             </p>
-            <div className="mt-6">
+
+            <div
+              className="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-full"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                backdropFilter: "blur(6px)",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
               <ButtonPrimary label="VIEW HOTEL DETAILS" href="/RoyalHomes" />
             </div>
           </div>
-        </motion.div>
-      </section>
 
-      {/* Gallery grid */}
-      <main className="bg-white py-16">
-        <div className="max-w-[1300px] mx-auto px-6">
+          {/* curved bottom */}
+          <svg
+            className="absolute -bottom-1 left-0 w-full"
+            viewBox="0 0 1440 100"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path
+              d="M0,40 C200,120 400,0 720,40 C1040,80 1240,20 1440,60 L1440,100 L0,100 Z"
+              fill="#FFFFFF"
+            />
+          </svg>
+        </div>
+
+        <div className="absolute z-10 text-left left-16 -mt-72">
+          <img src={slogo} alt="brand" />
+        </div>
+      </motion.section>
+
+      <main className="bg-white">
+        <div className="max-w-[1300px] mx-auto px-6 py-16">
           <div className="mb-8 text-center">
             <p className="text-sm text-[#b2925a] uppercase tracking-wider font-semibold">
               Visual Tour
@@ -79,22 +111,68 @@ const Gallery = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {images.map((src, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.03 }}
-                className="overflow-hidden shadow-md cursor-pointer bg-gray-50"
-                onClick={() => setSelected(src)}
-              >
-                <img
-                  src={src}
-                  alt={`gallery-${idx + 1}`}
-                  className="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </motion.div>
-            ))}
-          </div>
+          {/* Rooms Section */}
+          <section className="mb-12">
+            <h4 className="text-2xl font-serif text-[#111] mb-6">Rooms</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {rooms.map((src, idx) => (
+                <motion.div
+                  key={`room-${idx}`}
+                  whileHover={{ scale: 1.03 }}
+                  className="overflow-hidden rounded-lg shadow-md cursor-pointer bg-gray-50"
+                  onClick={() => setSelected(src)}
+                >
+                  <img
+                    src={src}
+                    alt={`room-${idx + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Pool Section */}
+          <section className="mb-12">
+            <h4 className="text-2xl font-serif text-[#111] mb-6">Pool & Leisure</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {pools.map((src, idx) => (
+                <motion.div
+                  key={`pool-${idx}`}
+                  whileHover={{ scale: 1.03 }}
+                  className="overflow-hidden rounded-lg shadow-md cursor-pointer bg-gray-50"
+                  onClick={() => setSelected(src)}
+                >
+                  <img
+                    src={src}
+                    alt={`pool-${idx + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Hall / Events Section */}
+          <section>
+            <h4 className="text-2xl font-serif text-[#111] mb-6">Event Spaces</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {halls.map((src, idx) => (
+                <motion.div
+                  key={`hall-${idx}`}
+                  whileHover={{ scale: 1.03 }}
+                  className="overflow-hidden rounded-lg shadow-md cursor-pointer bg-gray-50"
+                  onClick={() => setSelected(src)}
+                >
+                  <img
+                    src={src}
+                    alt={`hall-${idx + 1}`}
+                    className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
 

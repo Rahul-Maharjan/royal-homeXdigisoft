@@ -107,7 +107,7 @@ const Navbar = () => {
         {/* Right Section */}
         <div className="flex items-center gap-8">
           {/* Phone */}
-          <div className="hidden lg:flex items-center gap-1">
+          <Link href="tel:+9779806767979" className="hidden lg:flex items-center gap-1">
             <FiPhone
               className={`text-base ${
                 scrolled ? "text-[#b38b59]" : "text-white"
@@ -116,7 +116,7 @@ const Navbar = () => {
             <span className="text-lg font-bold tracking-wide">
               +977-9806767979
             </span>
-          </div>
+          </Link>
 
           {/* Book Now */}
           <motion.a
