@@ -6,7 +6,6 @@ import Img3 from "../../assets/rooms/5.jpg";
 import Img4 from "../../assets/rooms/1.jpg";
 
 const rooms = [
-  { id: 1, title: "Super Deluxe Room", img: Img3, path: "/room" },
   { id: 2, title: "Master Room", img: Img2, path: "/room" },
   { id: 3, title: "Twin Bed Room", img: Img1, path: "/room" },
   { id: 4, title: "Deluxe Room", img: Img4, path: "/room" },
@@ -47,7 +46,7 @@ const ResortRooms = () => {
       <div
         className="
           relative z-10 grid 
-          grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+          grid-cols-1 sm:grid-cols-2 md:grid-cols-3
           border-t border-[#ffffff40]
           overflow-x-auto lg:overflow-x-hidden
           snap-x snap-mandatory scrollbar-hide

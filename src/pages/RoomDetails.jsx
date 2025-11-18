@@ -21,8 +21,9 @@ import icon14 from "../assets/rooms/icon-14.png";
 import icon15 from "../assets/rooms/icon-15.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import hero from "../assets/hero.webp";
-import duplex from "../assets/duplex.webp";
+import hero from "../assets/rooms/6.jpg";
+import twin from "../assets/rooms/7.jpg";
+import duplex from "../assets/rooms/5.jpg";
 import slogo from "../assets/slogo.png";
 
 const ROOMS = {
@@ -102,7 +103,7 @@ const ROOMS = {
       { icon: icon14, label: "35 m²" },
       { icon: icon15, label: "2 Single Beds" },
     ],
-    heroImage: hero,
+    heroImage: twin,
     description: `Twin Bed rooms are ideal for friends, colleagues, or solo travelers. Featuring two comfortable single beds and a peaceful view, it’s a perfect blend of comfort and convenience.`,
     rules: [
       "Check-in: From 3:00 PM",
